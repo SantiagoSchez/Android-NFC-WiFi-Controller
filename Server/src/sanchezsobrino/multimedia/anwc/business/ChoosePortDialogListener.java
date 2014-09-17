@@ -25,7 +25,7 @@ public class ChoosePortDialogListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			int server_port = (int) portSpinner.getValue();
+			int server_port = (Integer) portSpinner.getValue();
 			ServerSocket socket = new ServerSocket(server_port);
 			socket.close();
 			status.setText("1");

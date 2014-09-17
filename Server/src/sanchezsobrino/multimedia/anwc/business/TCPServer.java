@@ -67,13 +67,13 @@ public class TCPServer extends Thread {
 
 		try {
 			server_socket = new ServerSocket(port);
-			log.logSuccess(server_started + " " + socket_data + System.lineSeparator());
+			log.logSuccess(server_started + " " + socket_data + System.getProperty("line.separator"));
 
 			CustomQRCode qr = new CustomQRCode(socket_data, 250, 250);
 			red_qr_code = qr.getRedQRCode();
 			green_qr_code = qr.getGreenQRCode();
 		} catch (IOException e) {
-			log.logError(critical_error + ": " + port + System.lineSeparator());
+			log.logError(critical_error + ": " + port + System.getProperty("line.separator"));
 			JOptionPane.showMessageDialog(log, critical_error, error_word, JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
 		}
@@ -81,11 +81,11 @@ public class TCPServer extends Thread {
 		Socket client_socket = null;
 		while (waiting_for_clients) {
 			try {
-				log.logSuccess(waiting_for_client + System.lineSeparator());
+				log.logSuccess(waiting_for_client + System.getProperty("line.separator"));
 				qrLabel.setIcon(red_qr_code);
 
 				client_socket = server_socket.accept();
-				log.logSuccess(client_connected + " " + client_socket.getInetAddress().getHostAddress() + System.lineSeparator());
+				log.logSuccess(client_connected + " " + client_socket.getInetAddress().getHostAddress() + System.getProperty("line.separator"));
 				qrLabel.setIcon(green_qr_code);
 
 				Scanner in = new Scanner(client_socket.getInputStream());
@@ -99,7 +99,7 @@ public class TCPServer extends Thread {
 
 					try {
 						if (proccessInput(event)) {
-							log.logInfo(event_received + ": '" + event + "'" + System.lineSeparator());
+							log.logInfo(event_received + ": '" + event + "'" + System.getProperty("line.separator"));
 						} else {
 							waiting_for_commands = false;
 							
@@ -110,7 +110,7 @@ public class TCPServer extends Thread {
 				}
 				in.close();
 			} catch (Exception e) {
-				log.logError(accept_failed + System.lineSeparator());
+				log.logError(accept_failed + System.getProperty("line.separator"));
 			} finally {
 				try {
 					frame.setExtendedState(Cursor.DEFAULT_CURSOR);
@@ -120,7 +120,7 @@ public class TCPServer extends Thread {
 				}
 				qrLabel.setIcon(red_qr_code);
 				waiting_for_commands = true;
-				log.logError(client_disconnected + " " + client_socket.getInetAddress().getHostAddress() + System.lineSeparator());
+				log.logError(client_disconnected + " " + client_socket.getInetAddress().getHostAddress() + System.getProperty("line.separator"));
 			}
 		}
 

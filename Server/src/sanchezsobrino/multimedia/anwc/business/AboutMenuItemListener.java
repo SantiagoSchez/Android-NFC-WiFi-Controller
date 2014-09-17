@@ -15,9 +15,9 @@ public class AboutMenuItemListener implements ActionListener {
 
 		this.window = window;
 		this.text = new StringBuffer();
-		this.text.append(new LocalizedString("about_text1")).append(System.lineSeparator());
-		this.text.append(new LocalizedString("about_text2")).append(System.lineSeparator()).append(System.lineSeparator());
-		this.text.append(new LocalizedString("about_text3")).append(System.lineSeparator());
+		this.text.append(new LocalizedString("about_text1")).append(System.getProperty("line.separator"));
+		this.text.append(new LocalizedString("about_text2")).append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
+		this.text.append(new LocalizedString("about_text3")).append(System.getProperty("line.separator"));
 	}
 
 	@Override
