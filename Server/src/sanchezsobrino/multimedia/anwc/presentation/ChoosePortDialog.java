@@ -96,7 +96,7 @@ public class ChoosePortDialog extends JDialog {
 	}
 	
 	public int getServerPort() {
-		return (int) choosePortSpinner.getValue();
+		return (Integer) choosePortSpinner.getValue();
 	}
 	
 	public int getStatus() {
